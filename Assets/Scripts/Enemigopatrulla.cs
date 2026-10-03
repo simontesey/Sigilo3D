@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class EnemigoPatrulla : MonoBehaviour
 {
-    [Header("Puntos de patrulla")]
-    public Transform[] puntosPatrulla; // arrastra aca los GameObjects (vacios) que marcan el recorrido, en orden
+    
+    public Transform[] puntosPatrulla; 
 
-    [Header("Movimiento")]
+    
     public float velocidad = 3f;
     public float velocidadRotacion = 5f;
-    public float tiempoEsperaEnPunto = 2f; // cuanto se queda quieto en cada punto antes de seguir
-    public bool hacerLoop = true; // al llegar al ultimo punto, vuelve al primero. Si es false, va y vuelve (ping-pong)
+    public float tiempoEsperaEnPunto = 2f; 
+    public bool hacerLoop = true; 
 
     private int indiceActual = 0;
     private int direccionPingPong = 1;
@@ -19,7 +19,7 @@ public class EnemigoPatrulla : MonoBehaviour
     {
         if (puntosPatrulla == null || puntosPatrulla.Length == 0) return;
 
-        // Esperando en el punto actual antes de moverse al siguiente
+        
         if (tiempoEsperaRestante > 0f)
         {
             tiempoEsperaRestante -= Time.deltaTime;
@@ -29,9 +29,9 @@ public class EnemigoPatrulla : MonoBehaviour
         Transform destino = puntosPatrulla[indiceActual];
         if (destino == null) return;
 
-        // Mover hacia el destino
+       
         Vector3 direccionMovimiento = (destino.position - transform.position);
-        direccionMovimiento.y = 0f; // ignora diferencias de altura para no inclinar al enemigo
+        direccionMovimiento.y = 0f; 
 
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(destino.position.x, transform.position.y, destino.position.z), velocidad * Time.deltaTime);
 
@@ -59,7 +59,7 @@ public class EnemigoPatrulla : MonoBehaviour
         }
         else
         {
-            // Ping-pong: va del primero al ultimo y vuelve, en vez de saltar del ultimo al primero
+            
             if (indiceActual + direccionPingPong >= puntosPatrulla.Length || indiceActual + direccionPingPong < 0)
             {
                 direccionPingPong *= -1;
@@ -70,7 +70,7 @@ public class EnemigoPatrulla : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        // Dibuja el recorrido en la Scene view para que sea facil de ajustar
+       
         if (puntosPatrulla == null || puntosPatrulla.Length < 2) return;
 
         Gizmos.color = Color.yellow;

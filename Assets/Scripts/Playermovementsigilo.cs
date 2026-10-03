@@ -4,26 +4,26 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovementSigilo : MonoBehaviour
 {
-    [Header("Movimiento")]
+    
     public float velocidadCaminando = 6f;
-    public float velocidadAgachado = 2.5f; // mas lento agachado, como en Metal Gear
-    public float velocidadRotacion = 120f; // grados por segundo al girar con A/D
+    public float velocidadAgachado = 2.5f; 
+    public float velocidadRotacion = 120f; 
 
-    [Header("Salto")]
+    
     public float fuerzaSalto = 8f;
     public float gravedad = -20f;
 
-    [Header("Agacharse (tecla C)")]
+    
     public float alturaParado = 2f;
     public float alturaAgachado = 1f;
-    public float velocidadTransicionAgacharse = 8f; // que tan rapido cambia de altura
+    public float velocidadTransicionAgacharse = 8f; 
 
-    [Header("Deteccion / sigilo")]
-    [Range(0f, 1f)] public float visibilidadParado = 1f;     // 1 = muy facil de detectar
-    [Range(0f, 1f)] public float visibilidadAgachado = 0.35f; // mas bajo = mas dificil de detectar
+    
+    [Range(0f, 1f)] public float visibilidadParado = 1f;     
+    [Range(0f, 1f)] public float visibilidadAgachado = 0.35f; 
     public bool estaAgachado { get; private set; }
 
-    [Header("Cobertura detras de cajas")]
+    
     public string tagCajas = "Cajas";
     public LayerMask capaObstaculos = ~0; 
     public float alturaPuntoVisible = 1.2f; 

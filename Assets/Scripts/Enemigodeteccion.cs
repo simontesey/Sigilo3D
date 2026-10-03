@@ -5,30 +5,30 @@ public class EnemigoDeteccion : MonoBehaviour
 {
     private enum EstadoEnemigo { Patrullando, Persiguiendo }
 
-    [Header("Referencias")]
-    public PlayerMovementSigilo jugador; // arrastra aca el objeto del jugador
-    public EnemigoPatrulla scriptPatrulla; // opcional: si lo dejas vacio, lo busca solo con GetComponent
+    
+    public PlayerMovementSigilo jugador; 
+    public EnemigoPatrulla scriptPatrulla; 
 
-    [Header("Deteccion")]
+    
     public float distanciaMaximaVision = 15f;
-    public float anguloVision = 90f; // grados de campo de vision, centrado hacia adelante del enemigo
-    public Transform ojosEnemigo; // punto desde donde "mira" el enemigo (si lo dejas vacio, usa su propia posicion)
+    public float anguloVision = 90f;
+    public Transform ojosEnemigo; 
 
-    [Header("Barra de sospecha")]
-    public float velocidadAumentoSospecha = 1f; // por segundo, multiplicado por la visibilidad del jugador
+    
+    public float velocidadAumentoSospecha = 1f; 
     public float velocidadBajarSospecha = 0.5f;
-    [Range(0f, 1f)] public float nivelSospecha = 0f; // 0 = no sospecha nada, 1 = te detecto del todo
+    [Range(0f, 1f)] public float nivelSospecha = 0f; 
 
-    [Header("Persecucion")]
+    
     public float velocidadPersecucion = 5f;
     public float velocidadRotacionPersecucion = 8f;
-    public float distanciaAtrapar = 1.2f; // a esta distancia del jugador, lo atrapa y reinicia el nivel
-    public float tiempoParaPerderJugador = 4f; // segundos sin verlo antes de volver a patrullar
+    public float distanciaAtrapar = 1.2f; 
+    public float tiempoParaPerderJugador = 4f; 
 
-    [Header("Cono de vision (visual)")]
+   
     public bool mostrarConoVision = true;
-    public Color colorPatrullando = new Color(1f, 1f, 0f, 0.25f); // amarillo semi-transparente
-    public Color colorPersiguiendo = new Color(1f, 0f, 0f, 0.35f); // rojo semi-transparente
+    public Color colorPatrullando = new Color(1f, 1f, 0f, 0.25f); 
+    public Color colorPersiguiendo = new Color(1f, 0f, 0f, 0.35f); 
     public int segmentosCono = 24;
 
     private EstadoEnemigo estado = EstadoEnemigo.Patrullando;
@@ -52,7 +52,7 @@ public class EnemigoDeteccion : MonoBehaviour
         Vector3 posicionOjos = ojosEnemigo != null ? ojosEnemigo.position : transform.position;
         bool puedeVerAlJugador = PuedeVerAlJugador(posicionOjos);
 
-        // --- Barra de sospecha ---
+        
         if (puedeVerAlJugador)
             nivelSospecha += velocidadAumentoSospecha * jugador.VisibilidadActual * Time.deltaTime;
         else
@@ -60,7 +60,7 @@ public class EnemigoDeteccion : MonoBehaviour
 
         nivelSospecha = Mathf.Clamp01(nivelSospecha);
 
-        // --- Transicion de estado ---
+        
         if (estado == EstadoEnemigo.Patrullando && nivelSospecha >= 1f)
         {
             EntrarEnPersecucion();
@@ -92,7 +92,7 @@ public class EnemigoDeteccion : MonoBehaviour
         tiempoSinVerJugador = 0f;
 
         if (scriptPatrulla != null)
-            scriptPatrulla.enabled = false; // deja de patrullar mientras persigue
+            scriptPatrulla.enabled = false; 
     }
 
     void VolverAPatrullar()
@@ -148,13 +148,13 @@ public class EnemigoDeteccion : MonoBehaviour
         SceneManager.LoadScene(escenaActual.buildIndex);
     }
 
-    // --- Cono de vision visual ---
+
 
     void GenerarConoVision()
     {
         GameObject objetoCono = new GameObject("ConoVision");
         objetoCono.transform.SetParent(transform, false);
-        objetoCono.transform.localPosition = new Vector3(0f, 0.05f, 0f); // un poco arriba del piso para evitar z-fighting
+        objetoCono.transform.localPosition = new Vector3(0f, 0.05f, 0f); 
         objetoCono.transform.localRotation = Quaternion.identity;
 
         MeshFilter filtro = objetoCono.AddComponent<MeshFilter>();
@@ -163,7 +163,7 @@ public class EnemigoDeteccion : MonoBehaviour
         filtro.mesh = ConstruirMeshCono();
 
         Shader shader = Shader.Find("Sprites/Default");
-        if (shader == null) shader = Shader.Find("Unlit/Color"); // fallback si el proyecto no tiene el shader anterior
+        if (shader == null) shader = Shader.Find("Unlit/Color"); 
 
         materialCono = new Material(shader);
         materialCono.color = colorPatrullando;
@@ -181,7 +181,7 @@ public class EnemigoDeteccion : MonoBehaviour
         Vector3[] vertices = new Vector3[cantidadVertices];
         int[] triangulos = new int[segmentosCono * 3];
 
-        vertices[0] = Vector3.zero; // el apice del cono, en la posicion del enemigo
+        vertices[0] = Vector3.zero; 
 
         float anguloInicial = -anguloVision * 0.5f;
         float pasoAngulo = anguloVision / segmentosCono;

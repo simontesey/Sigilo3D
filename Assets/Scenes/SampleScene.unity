@@ -1379,7 +1379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
   speed: 4
-  stopDistance: 3.5
+  stopDistance: 1
   loseTargetOnExit: 1
 --- !u!1 &276437298
 GameObject:
@@ -1809,7 +1809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
   speed: 4
-  stopDistance: 3.5
+  stopDistance: 1
   loseTargetOnExit: 1
 --- !u!1001 &308972633
 PrefabInstance:
@@ -4486,7 +4486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
   speed: 4
-  stopDistance: 3.5
+  stopDistance: 1
   loseTargetOnExit: 1
 --- !u!1 &1169424631 stripped
 GameObject:
@@ -6009,7 +6009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
   speed: 4
-  stopDistance: 3.5
+  stopDistance: 1
   loseTargetOnExit: 1
 --- !u!1001 &1532488067
 PrefabInstance:
@@ -6921,7 +6921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
   speed: 4
-  stopDistance: 3.5
+  stopDistance: 1
   loseTargetOnExit: 1
 --- !u!1 &1664549928
 GameObject:
@@ -7436,7 +7436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
   speed: 4
-  stopDistance: 3.5
+  stopDistance: 1
   loseTargetOnExit: 1
 --- !u!1 &1770727803
 GameObject:
@@ -8495,7 +8495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
   speed: 4
-  stopDistance: 3.5
+  stopDistance: 1
   loseTargetOnExit: 1
 --- !u!1001 &2020016719
 PrefabInstance:

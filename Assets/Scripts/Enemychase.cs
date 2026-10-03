@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class EnemyChase : MonoBehaviour
 {
-    [Header("Movimiento")]
+   
     public float speed = 3f;
-    public float stopDistance = 1.5f;   // distancia a la que se detiene del jugador
-    public bool loseTargetOnExit = true; // si el player sale del trigger, deja de perseguir
-
+    public float stopDistance = 1.5f;   
+    public bool loseTargetOnExit = true; 
     private Transform target;
 
-    // El collider de este objeto (o de un hijo) debe tener "Is Trigger" activado
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
